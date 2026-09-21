@@ -1,8 +1,12 @@
-//
-// Created by adapa on 9/21/2026.
-//
+#pragma once
+#include <iostream>
+#include <ostream>
 
-#ifndef A3LINKEDLIST_NODE_H
-#define A3LINKEDLIST_NODE_H
+template <typename T>
+class Node {
+public:
+    T* data;
+    Node<T>* next;
 
-#endif //A3LINKEDLIST_NODE_H
+    explicit Node(T* value) : data(value), next(nullptr) {}
+
