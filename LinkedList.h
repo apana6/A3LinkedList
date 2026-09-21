@@ -4,6 +4,7 @@
 
 #pragma once
 #include "Node.h"
+#include "List.h"
 
 template <typename T>
 class LinkedList : public List<T> {
