@@ -2,7 +2,21 @@
 // Created by adapa on 9/21/2026.
 //
 
-#ifndef A3LINKEDLIST_DATA_H
-#define A3LINKEDLIST_DATA_H
+#pragma once
+#include <ostream>
+#include <string>
 
-#endif //A3LINKEDLIST_DATA_H
+class Data {
+public:
+    Data(int numID, const std::string& name)
+    : numID_(numID), name_(name) {}
+    bool operator==(const Data& other) const {
+        return numID_ == other.numID_;
+    }
+    friend std::ostream& operator<<(std::ostream& out, const Data& d) {
+        return out << d.numID_ << " " << d.name_;
+    }
+private:
+    int numID_;
+    std::string name_;
+};

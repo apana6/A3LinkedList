@@ -9,4 +9,5 @@ public:
     Node<T>* next;
 
     explicit Node(T* value) : data(value), next(nullptr) {}
+};
 
