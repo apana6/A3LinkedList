@@ -3,6 +3,8 @@
 #pragma once
 
 #include <iostream>
+
+#include "LinkedList.h"
 #include "List.h"
 
 template <typename T>
@@ -53,6 +55,70 @@ public:
             }
         std::cout << std::endl;
         }
+
+    void addAnywhere(int position, T* value) override {
+        if (position < 0 || position > size_) {
+            std::cout << "Not valid" << std::endl;
+            return;
+        }
+
+        if (size_ >= CAPACITY) {
+            std::cout << "Full" << std::endl;
+            return;
+        }
+
+        for (int i = size_; i > position; --i) {
+            data_[i] = data_[i - 1];
+        }
+
+        data_[position] = value;
+        ++size_;
+    }
+
+    void deleteAnywhere(int position) override {
+        if (position < 0 || position > size_) {
+            std::cout << "Not valid" << std::endl;
+            return;
+        }
+        delete data_[position];
+
+        for (int i = position; i < size_ - 1; ++i) {
+            data_[i] = data_[i + 1];
+        }
+        --size_;
+    }
+
+    void reverse() override {
+        int left = 0;
+        int right = size_ - 1;
+
+        while (left < right) {
+            T* temp = data_[left];
+            data_[left] = data_[right];
+            data_[right] = temp;
+            ++left;
+            --right;
+        }
+    }
+
+    void concat(List<T>* other) override {
+        ArrayList<T>* otherArrayList = dynamic_cast<ArrayList<T>* >(other);
+
+        if (otherArrayList == nullptr) {
+            std::cout << "Not valid" << std::endl;
+            return;
+        }
+
+        if (size_ + otherArrayList->size_ > CAPACITY) {
+            std::cout << "Full" << std::endl;
+            return;
+        }
+        for (int i = 0; i < otherArrayList->size_; ++i) {
+            data_[i] = otherArrayList->data_[i];
+        }
+        size_ += otherArrayList->size_;
+        otherArrayList->size_ = 0;
+    }
 
     ~ArrayList() override {
         for (int i = 0; i < size_; ++i) {

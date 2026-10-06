@@ -15,7 +15,7 @@ class List {
     virtual bool search(T* value) const = 0;
     virtual void print() const = 0;
     virtual void addAnywhere(int position, T* value) = 0;
-    virtual void deleteAndywhere(int position) = 0;
+    virtual void deleteAnywhere(int position) = 0;
     virtual void reverse() = 0;
     virtual void concat(List<T>* other) = 0;
 };
