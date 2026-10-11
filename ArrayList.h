@@ -4,7 +4,6 @@
 
 #include <iostream>
 
-#include "LinkedList.h"
 #include "List.h"
 
 template <typename T>
@@ -57,7 +56,7 @@ public:
         }
 
     void addAnywhere(int position, T* value) override {
-        if (position < 0 || position > size_) {
+        if (position < 0 || position >= size_) {
             std::cout << "Not valid" << std::endl;
             return;
         }
@@ -114,7 +113,7 @@ public:
             return;
         }
         for (int i = 0; i < otherArrayList->size_; ++i) {
-            data_[i] = otherArrayList->data_[i];
+            data_[size_ + i] = otherArrayList->data_[i];
         }
         size_ += otherArrayList->size_;
         otherArrayList->size_ = 0;

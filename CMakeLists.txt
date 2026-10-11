@@ -8,4 +8,5 @@ add_executable(untitled3 main.cpp
         ArrayList.h
         LinkedList.h
         List.h
-        Data.h)
+        Data.h
+        Stack.h)

@@ -44,13 +44,86 @@ public:
         std::cout << std::endl;
     }
 
-    void addAnywhere(int position, T* value) override;
+    void addAnywhere(int position, T* value) override {
+        if (position <0 || position > size_) {
+            std::cout << "Position out of range." << std::endl;
+            return;
+        }
+        Node<T>* newNode = new Node<T>(value);
+        if (position == 0) {
+            newNode->next = head_;
+            head_ = newNode;
+        }else {
+            Node<T>* current = head_;
+            for (int i = 0; i < position - 1; ++i) {
+                current = current->next;
+            }
+            newNode->next = current->next;
+            current->next = newNode;
+        }
+        ++size_;
+    }
 
-    void deleteAnywhere(int position) override;
+    void deleteAnywhere(int position) override {
+        if (position < 0 || position >= size_) {
+            std::cout << "LinkedList is empty." << std::endl;
+            return;
+        }
 
-    void reverse() override;
+        if (position == 0) {
+            deleteFront();
+            return;
+        }
+        Node<T>* previous = head_;
 
-    void concat(List<T>* other) override;
+        for (int i = 0; i < position - 1; ++i) {
+            previous = previous->next;
+        }
+
+        Node<T>* doomed = previous->next;
+        previous->next = doomed->next;
+        delete doomed->data;
+        delete doomed;
+        --size_;
+    }
+
+    void reverse() override {
+        Node<T>* previous = nullptr;
+        Node<T>* current = head_;
+        while (current != nullptr) {
+            Node<T>* next = current->next;
+            current->next = previous;
+            previous = current;
+            current = next;
+        }
+
+        head_ = previous;
+    }
+
+    void concat(List<T>* other) override {
+        LinkedList<T>* otherList = dynamic_cast<LinkedList<T>* >(other);
+
+        if (otherList == nullptr) {
+            std::cout << "Can't concat" << std::endl;
+            return;
+        }
+        if (otherList->head_ == nullptr) {
+            return;
+        }
+        if (head_ == nullptr) {
+            head_ = otherList->head_;
+        } else {
+            Node<T>* current = head_;
+
+            while (current-> next != nullptr) {
+                current = current->next;
+            }
+            current->next = otherList->head_;
+        }
+        size_ += otherList->size_;
+        otherList->head_ = nullptr;
+        otherList->size_ = 0;
+    }
 
     ~LinkedList() override {
         while (head_ != nullptr) {
