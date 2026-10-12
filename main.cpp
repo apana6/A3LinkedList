@@ -53,7 +53,7 @@ int main() {
     table->addFront(bruno);
     table->addFront(rihanna);
 
-    std::cout << "Starting turn order:" << std::endl;
+    std::cout << "Starting order:" << std::endl;
     table->print();
 
     // A new player joins in the middle
