@@ -50,4 +50,5 @@ moving them causing data loss.
 
    It changes direction in main.cpp on the line table->reverse(). Before this call is made, the players
 appear in their original order and after the call the list is printed in the opposite order. This will 
-show that the direction of the players changed. 
+show that the direction of the players changed. Without reverse(), the players would stay in the same spots
+even after the reverse card is played. 

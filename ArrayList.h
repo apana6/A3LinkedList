@@ -56,7 +56,7 @@ public:
         }
 
     void addAnywhere(int position, T* value) override {
-        if (position < 0 || position >= size_) {
+        if (position < 0 || position > size_) {
             std::cout << "Not valid" << std::endl;
             return;
         }
@@ -75,7 +75,7 @@ public:
     }
 
     void deleteAnywhere(int position) override {
-        if (position < 0 || position > size_) {
+        if (position < 0 || position >= size_) {
             std::cout << "Not valid" << std::endl;
             return;
         }

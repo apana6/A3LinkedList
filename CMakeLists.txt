@@ -9,4 +9,5 @@ add_executable(untitled3 main.cpp
         LinkedList.h
         List.h
         Data.h
-        Stack.h)
+        Stack.h
+        Card.h)
